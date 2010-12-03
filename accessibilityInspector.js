@@ -49,7 +49,7 @@ jQuery(function($) {
                        $field.outerWidth() + 1, $field.outerHeight() + 1);
 
         ctx.fillStyle = color;
-        ctx.globalAlpha = 0.25;
+        ctx.globalAlpha = 0.2;
         ctx.fillRect($field.offset().left, $field.offset().top,
                      $field.outerWidth(), $field.outerHeight());
         ctx.globalAlpha = 1.0;
@@ -110,7 +110,7 @@ jQuery(function($) {
                               $label.offset().top  + $label.outerHeight() / 2,
                               $field.offset().left + $field.outerHeight() / 2,
                               $field.offset().top  + $field.outerHeight() / 2,
-                              'chartreuse');
+                              'lawngreen');
                 } else {
                     showMessage(ctx, $label, 'red', 'for ' + forId + '?');
                 }
@@ -120,7 +120,8 @@ jQuery(function($) {
         });
 
         // Show fields without a label
-        $('input:visible').filter(reallyVisible).each(function() {
+        $('input:visible:not([type="image"]):not([type="button"]):not([type="submit"]):not([type="reset"])')
+        .filter(reallyVisible).each(function() {
             var $field = $(this);
             var id     = $field.attr('id');
 
@@ -130,6 +131,8 @@ jQuery(function($) {
                 if ($labels.size() == 0) {
                     showMessage(ctx, $field, 'orange', 'label?');
                 }
+            } else {
+                showMessage(ctx, $field, 'yellow', 'id?');
             }
         });
     }
@@ -146,11 +149,11 @@ jQuery(function($) {
                     tabindex_$field.push([tabindex, $field]);
                 } else {
                     // If negative, element is removed from the tab order
-                    showMessage(ctx, $field, 'yellow', 'tabindex=-1');
+                    showMessage(ctx, $field, 'greenyellow', 'tabindex=-1');
                 }
             } else {
                 tabindex_$field.push([Infinity, $field]);
-                showMessage(ctx, $field, 'red', '');
+                showMessage(ctx, $field, 'orange', '');
             }
         });
 
