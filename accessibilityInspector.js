@@ -140,6 +140,9 @@ jQuery(function($) {
     function checkTabindex(ctx) {
         var tabindex_$field = [];
 
+        // If no element has tabindex, no warning is displayed for that
+        var useTabindex = $('a[tabindex], :input[tabindex]').size() > 0;
+
         $('a:visible, :input:visible').filter(reallyVisible).each(function() {
             var $field   = $(this);
             var tabindex = $field.attr('tabindex');
@@ -153,7 +156,9 @@ jQuery(function($) {
                 }
             } else {
                 tabindex_$field.push([Infinity, $field]);
-                showMessage(ctx, $field, 'orange', '');
+                if (useTabindex) {
+                    showMessage(ctx, $field, 'orange', '');
+                }
             }
         });
 
@@ -171,7 +176,7 @@ jQuery(function($) {
             var x1 = $field.offset().left + $field.outerWidth() / 2;
             var y1 = $field.offset().top + $field.outerHeight() / 2;
 
-            if (isFinite(tabindex)) {
+            if (!useTabindex || isFinite(tabindex)) {
                 drawArrow(ctx, x0, y0, x1, y1, 'darkblue');
             } else {
                 drawArrow(ctx, x0, y0, x1, y1, 'darkred');
