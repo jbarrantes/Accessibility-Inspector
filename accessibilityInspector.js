@@ -200,6 +200,15 @@ jQuery(function($) {
         }
     }
 
+    function checkAccesskey(ctx) {
+        $(':visible[accesskey]').filter(reallyVisible).each(function() {
+            var $item = $(this);
+            var key   = $item.attr('accesskey');
+
+            showMessage(ctx, $item, 'silver', 'K=' + key);
+        });
+    }
+
     function updateCanvas() {
         var ctx = canvas.getContext('2d');
 
@@ -208,6 +217,7 @@ jQuery(function($) {
         checkAltAndTitle(ctx);
         checkLabelFor(ctx);
         checkTabindex(ctx);
+        checkAccesskey(ctx);
         //TODO: add additional checks
     }
 
