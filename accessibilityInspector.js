@@ -210,30 +210,47 @@ jQuery(function($) {
     }
 
     function updateCanvas() {
-        var ctx = canvas.getContext('2d');
+        $canvas.attr('width',  window.innerWidth)
+        .attr('height', window.innerHeight)
+        .css({
+            width:  window.innerWidth - 2 + 'px',
+            height: window.innerHeight - 2 + 'px'
+        });
 
+        var ctx = canvas.getContext('2d');
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+        ctx.save();
+        var oy = $('html').scrollTop();
+        var ox = $('html').scrollLeft();
+        ctx.translate(-ox, -oy);
+        
         checkAltAndTitle(ctx);
         checkLabelFor(ctx);
         checkTabindex(ctx);
         checkAccesskey(ctx);
         //TODO: add additional checks
+
+        ctx.restore();
     }
 
     // Canvas for information rendering (transparent to mouse events)
-    var canvas = $('<canvas></canvas>')
-        .attr('width',  $(document).width())
-        .attr('height', $(document).height())
+    var $canvas = $('<canvas></canvas>')
+        .attr('width',  window.innerWidth)
+        .attr('height', window.innerHeight)
         .css({
-            position:         'absolute',
+            position:         'fixed',
             top:              '0px',
             left:             '0px',
+            width:            window.innerWidth - 2 + 'px',
+            height:           window.innerHeight - 2 + 'px',
             'z-index':        1000000,
-            'pointer-events': 'none'
+            'pointer-events': 'none',
+            border:           '1px solid gray'
         })
-        .appendTo('body')
-        .get(0);
+        .appendTo('body');
+
+    var canvas = $canvas.get(0);
 
     setInterval(updateCanvas, 500);
 });
