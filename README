@@ -8,6 +8,10 @@ Include the script in the page to review, and remove it when done.
 
 **Note:** Accessibility Inspector requires jQuery.
 
+## User Script Version
+
+User Script Version is also available (run it with Greasemonkey)
+
 ## License
 
 The Accessibility Inspector is licensed under the MIT License (LICENSE.txt).
