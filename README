@@ -2,6 +2,8 @@
 
 The purpose of the Accessibility Inspector is to help with the revision of web pages, highlighting potential accessibility issues.
 
+For a more advanced tool please see http://wave.webaim.org/toolbar from WebAIM.
+
 ## Usage
 
 Include the script in the page to review, and remove it when done.
