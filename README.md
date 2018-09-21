@@ -18,4 +18,4 @@ User Script Version is also available (run it with Greasemonkey)
 
 The Accessibility Inspector is licensed under the MIT License (LICENSE.txt).
 
-Copyright (c) 2010 Jose Barrantes
+Copyright (c) 2010-2018 Jose Barrantes
